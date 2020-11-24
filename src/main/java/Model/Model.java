@@ -1,5 +1,9 @@
 package Model;
 
+import Ghosts.Pinky;
+
+import java.util.List;
+
 public class Model {
     public enum Direction {
         UP,
@@ -13,6 +17,7 @@ public class Model {
     public static Direction direction = Direction.RIGHT;
     public static Pacman pacman = new Pacman();
     public static GameField field = new GameField();
+    public static Pinky pinky = new Pinky();
     public static boolean gameOver;
 
     public static void classicGame() {
@@ -43,5 +48,14 @@ public class Model {
                 break;
         }
         field.eatFood(pacman.currentY, pacman.currentX);
+    }
+
+    public static void pinkyMove() {
+        List<FieldPoint> pinkyPath = pinky.findShortestPath(pacman.currentX, pacman.currentY);
+        if (pinkyPath.size() > 1) {
+            FieldPoint nextStep = pinkyPath.get(1);
+            pinky.currentX = nextStep.getX();
+            pinky.currentY = nextStep.getY();
+        }
     }
 }

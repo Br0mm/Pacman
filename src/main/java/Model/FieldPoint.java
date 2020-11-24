@@ -16,7 +16,7 @@ public class FieldPoint {
 
     private int x;
     private int y;
-    int weight = -1;
+    int weight = Integer.MAX_VALUE;
     PointType type = PointType.COMMON;
     boolean isObstacle = false;
 

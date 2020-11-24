@@ -33,17 +33,22 @@ public class View {
 
         Node heroBody = createHeroFront();
 
+        Node pinkyBody = createPinkyFront();
+
         Group gameField = createGameField();
 
 
         KeyFrame frame = new KeyFrame(Duration.seconds(0.15), event -> {
             Model.classicGame();
+            Model.pinkyMove();
             heroBody.setTranslateX(Model.pacman.currentX * bodySize);
             heroBody.setTranslateY(Model.pacman.currentY * bodySize);
+            pinkyBody.setTranslateX(Model.pinky.currentX * bodySize);
+            pinkyBody.setTranslateY(Model.pinky.currentY * bodySize);
         });
         timeline.getKeyFrames().add(frame);
         timeline.setCycleCount(Timeline.INDEFINITE);
-        root.getChildren().addAll(gameField, heroBody);
+        root.getChildren().addAll(gameField, heroBody, pinkyBody);
         return root;
     }
 
@@ -53,6 +58,15 @@ public class View {
         circle.setCenterY(bodySize / 2);
         circle.setCenterX(bodySize / 2);
         circle.setFill(Color.YELLOW);
+        return circle;
+    }
+
+    public Node createPinkyFront() {
+        Circle circle = new Circle();
+        circle.setRadius(bodySize / 2);
+        circle.setCenterY(bodySize / 2);
+        circle.setCenterX(bodySize / 2);
+        circle.setFill(Color.PINK);
         return circle;
     }
 
