@@ -19,7 +19,7 @@ public class GameField {
         gameField = new FieldPoint[31][28];
         for (int i = 0; i < 31; i++) {
             for (int j = 0; j < 28; j++) {
-                gameField[i][j] = new FieldPoint();
+                gameField[i][j] = new FieldPoint(j, i);
             }
         }
     }

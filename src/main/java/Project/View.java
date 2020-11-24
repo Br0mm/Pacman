@@ -60,7 +60,7 @@ public class View {
         Group field = new Group();
         for (int i = 0; i < 31; i++) {
             for (int j = 0; j < 28; j++) {
-                if (Model.field.gameField[i][j].getType() == FieldPoint.PointType.OBSTACLE) {
+                if (Model.field.gameField[i][j].isObstacle()) {
                     Rectangle rect = new Rectangle(bodySize, bodySize);
                     rect.setY(i * bodySize);
                     rect.setX(j * bodySize);
