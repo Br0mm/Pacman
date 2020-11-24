@@ -1,8 +1,5 @@
 package Model;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-
 public class Model {
     public enum Direction {
         UP,
@@ -25,22 +22,22 @@ public class Model {
     public static void heroMove() {
         switch (direction) {
             case RIGHT:
-                if (field.gameField[pacman.currentY][pacman.currentX + 1] != GameField.TypeOfPoint.OBSTACLE) {
+                if (field.gameField[pacman.currentY][pacman.currentX + 1].getType() != FieldPoint.PointType.OBSTACLE) {
                     pacman.currentX++;
                 }
                 break;
             case LEFT:
-                if (field.gameField[pacman.currentY][pacman.currentX - 1] != GameField.TypeOfPoint.OBSTACLE) {
+                if (field.gameField[pacman.currentY][pacman.currentX - 1].getType() != FieldPoint.PointType.OBSTACLE) {
                     pacman.currentX--;
                 }
                 break;
             case UP:
-                if (field.gameField[pacman.currentY - 1][pacman.currentX] != GameField.TypeOfPoint.OBSTACLE) {
+                if (field.gameField[pacman.currentY - 1][pacman.currentX].getType() != FieldPoint.PointType.OBSTACLE) {
                     pacman.currentY--;
                 }
                 break;
             case DOWN:
-                if (field.gameField[pacman.currentY + 1][pacman.currentX] != GameField.TypeOfPoint.OBSTACLE) {
+                if (field.gameField[pacman.currentY + 1][pacman.currentX].getType() != FieldPoint.PointType.OBSTACLE) {
                     pacman.currentY++;
                 }
                 break;

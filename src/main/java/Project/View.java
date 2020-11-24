@@ -1,6 +1,6 @@
 package Project;
 
-import Model.GameField;
+import Model.FieldPoint;
 import Model.Model;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -60,14 +60,14 @@ public class View {
         Group field = new Group();
         for (int i = 0; i < 31; i++) {
             for (int j = 0; j < 28; j++) {
-                if (Model.field.gameField[i][j] == GameField.TypeOfPoint.OBSTACLE) {
+                if (Model.field.gameField[i][j].getType() == FieldPoint.PointType.OBSTACLE) {
                     Rectangle rect = new Rectangle(bodySize, bodySize);
                     rect.setY(i * bodySize);
                     rect.setX(j * bodySize);
                     rect.setFill(Color.DARKBLUE);
                     field.getChildren().add(rect);
                 }
-                else if (Model.field.gameField[i][j] == GameField.TypeOfPoint.COMMON) {
+                else if (Model.field.gameField[i][j].getType() == FieldPoint.PointType.COMMON) {
                     Circle circle = new Circle();
                     circle.setRadius(bodySize / 5);
                     circle.setCenterY(i * bodySize + bodySize / 2);
