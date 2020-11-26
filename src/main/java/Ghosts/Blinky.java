@@ -6,7 +6,7 @@ import Model.FieldPoint;
 
 import java.util.*;
 
-public class Pinky {
+public class Blinky {
     public int currentX = 14;
     public int currentY = 11;
     List<FieldPoint> path = new ArrayList<>();
@@ -72,7 +72,6 @@ public class Pinky {
                 currentPosition = field.gameField[currentPosition.getY() + 1][currentPosition.getX()];
                 path.add(currentPosition);
                 weight = currentPosition.getWeight();
-
             }
             if (currentPosition.getY() != 0)
                 if (field.gameField[currentPosition.getY() - 1][currentPosition.getX()].getWeight() < weight) {
