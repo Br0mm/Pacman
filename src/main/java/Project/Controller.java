@@ -1,6 +1,7 @@
 package Project;
 
 import Model.Model;
+import Model.GameField;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -38,11 +39,9 @@ public class Controller {
                     break;
                 case SPACE:
                     if (!gameStopped) {
-                        gameStopped = true;
                         View.timeline.stop();
                         gameStopped = true;
                     } else {
-                        gameStopped = false;
                         View.timeline.play();
                         gameStopped = false;
                     }
@@ -69,10 +68,22 @@ public class Controller {
         Main.primaryStage.setScene(Main.mainMenu);
     }
 
-    public void startGame() {
+    public void startGame()  {
+        View.timeline.stop();
         Model.gameOver = false;
         Model.direction = Model.Direction.NEUTRAL;
         Model.score = 0;
+        Model.field = new GameField();
+        Model.pacman.currentX = 14;
+        Model.pacman.currentY = 17;
+        Model.blinky.currentX = 14;
+        Model.blinky.currentY = 11;
+        try {
+            Main.primaryStage.setScene(control());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if (View.timeline.getKeyFrames().size() != 0) View.timeline.getKeyFrames().remove(0);
         View.timeline.play();
     }
 

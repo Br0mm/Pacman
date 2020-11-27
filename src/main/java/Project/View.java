@@ -38,6 +38,7 @@ public class View {
         KeyFrame frame = new KeyFrame(Duration.seconds(0.01), event -> {
             Model.classicGame();
             Model.blinkyMove();
+            Model.gameOverCheck();
             heroBody.setTranslateX(Model.pacman.currentX * bodySize);
             heroBody.setTranslateY(Model.pacman.currentY * bodySize);
             blinkyBody.setTranslateX(Model.blinky.currentX * bodySize);

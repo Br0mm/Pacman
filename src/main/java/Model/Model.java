@@ -1,8 +1,7 @@
 package Model;
 
 import Ghosts.Blinky;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
+import Project.Controller;
 
 import java.util.List;
 
@@ -66,6 +65,23 @@ public class Model {
                 blinky.currentX = nextStep.getX();
                 blinky.currentY = nextStep.getY();
             }
+        }
+    }
+
+    public static void gameOverCheck() {
+        if (blinky.currentX == pacman.currentX && blinky.currentY == pacman.currentY) {
+            Controller.gameOver();
+            return;
+        }
+        int commonPoints = 0;
+        for (FieldPoint[] points : field.gameField)
+            for (FieldPoint point : points) {
+                if (point.getType() == FieldPoint.PointType.COMMON || point.getType() == FieldPoint.PointType.SUPER)
+                    commonPoints++;
+            }
+        if (commonPoints == 0) {
+            Controller.gameOver();
+            return;
         }
     }
 }
