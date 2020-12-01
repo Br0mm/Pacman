@@ -15,12 +15,12 @@ public class Model {
     }
 
     public static int score;
-    public static Direction direction = Direction.RIGHT;
+    public static Direction direction = Direction.NEUTRAL;
     public static Pacman pacman = new Pacman();
     public static GameField field = new GameField();
     public static Blinky blinky = new Blinky();
     private static int counter = 0;
-    public static boolean gameOver;
+    public static boolean gameOver = false;
 
     public static void classicGame() {
         heroMove();
@@ -79,9 +79,6 @@ public class Model {
                 if (point.getType() == FieldPoint.PointType.COMMON || point.getType() == FieldPoint.PointType.SUPER)
                     commonPoints++;
             }
-        if (commonPoints == 0) {
-            Controller.gameOver();
-            return;
-        }
+        if (commonPoints == 0) Controller.gameOver();
     }
 }

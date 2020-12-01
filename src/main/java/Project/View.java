@@ -23,7 +23,7 @@ import java.net.MalformedURLException;
 
 public class View {
     static Timeline timeline = new Timeline();
-    private static int bodySize = 20;
+    private static final int bodySize = 20;
 
     public Parent createParent() throws IOException {
         final int width = 28 * bodySize;
@@ -32,7 +32,7 @@ public class View {
         root.setPrefSize(width, height);
 
         Node heroBody = createHeroFront();
-        Node blinkyBody = createPinkyFront();
+        Node blinkyBody = createBlinkyFront();
         Group gameField = createGameField();
 
         KeyFrame frame = new KeyFrame(Duration.seconds(0.01), event -> {
@@ -60,7 +60,7 @@ public class View {
         return circle;
     }
 
-    public Node createPinkyFront() {
+    public Node createBlinkyFront() throws IOException {
         Circle circle = new Circle();
         circle.setRadius(bodySize / 2);
         circle.setCenterY(bodySize / 2);
@@ -94,7 +94,7 @@ public class View {
     }
 
 
-    public  ImageView addBackground() throws MalformedURLException {
+    public ImageView addBackground() throws MalformedURLException {
         return new ImageView(new Image(new File("background/field.jpg").toURI().toURL().toString(),
                 28 * bodySize, 31 * bodySize, false, true));
     }
