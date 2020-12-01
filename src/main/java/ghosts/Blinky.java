@@ -1,8 +1,8 @@
-package Ghosts;
+package ghosts;
 
-import Model.GameField;
-import Model.Model;
-import Model.FieldPoint;
+import model.GameField;
+import model.Model;
+import model.FieldPoint;
 
 import java.util.*;
 

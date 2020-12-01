@@ -1,6 +1,12 @@
-package Model;
+package model;
 
 public class FieldPoint {
+    private final int x;
+    private final int y;
+    int weight = Integer.MAX_VALUE;
+    PointType type = PointType.COMMON;
+    private boolean isObstacle = false;
+
     FieldPoint (int x, int y) {
         this.x = x;
         this.y = y;
@@ -13,12 +19,6 @@ public class FieldPoint {
         SUPER,
         OBSTACLE
     }
-
-    private final int x;
-    private final int y;
-    int weight = Integer.MAX_VALUE;
-    PointType type = PointType.COMMON;
-    boolean isObstacle = false;
 
     public void setIsObstacle() {
         type = PointType.OBSTACLE;

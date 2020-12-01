@@ -1,7 +1,7 @@
-package Project;
+package project;
 
-import Model.FieldPoint;
-import Model.Model;
+import model.FieldPoint;
+import model.Model;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 
 
 public class View {
-    static Timeline timeline = new Timeline();
+    static public Timeline timeline = new Timeline();
     private static final int bodySize = 20;
 
     public Parent createParent() throws IOException {

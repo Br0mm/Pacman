@@ -1,7 +1,7 @@
-package Project;
+package project;
 
-import Model.Model;
-import Model.GameField;
+import model.Model;
+import model.GameField;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 
 public class Controller {
-    View b = new View();
+    private View b = new View();
     private boolean gameStopped = false;
 
     public Scene control() throws IOException {

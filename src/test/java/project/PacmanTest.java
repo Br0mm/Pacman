@@ -1,6 +1,6 @@
-package Project;
+package project;
 
-import Model.Model;
+import model.Model;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

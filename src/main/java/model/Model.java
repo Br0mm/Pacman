@@ -1,7 +1,7 @@
-package Model;
+package model;
 
-import Ghosts.Blinky;
-import Project.Controller;
+import ghosts.Blinky;
+import project.Controller;
 
 import java.util.List;
 
