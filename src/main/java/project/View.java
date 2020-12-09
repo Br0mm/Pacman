@@ -31,15 +31,17 @@ public class View {
         Pane root = new AnchorPane();
         root.setPrefSize(width, height);
 
-        Node heroBody = createHeroFront();
-        Node blinkyBody = createBlinkyFront();
-        Node inkyBody = createInkyFront();
+        Node heroBody = createCharacterFront(0);
+        Node blinkyBody = createCharacterFront(1);
+        Node pinkyBody = createCharacterFront(2);
+        Node inkyBody = createCharacterFront(3);
         Group gameField = createGameField();
 
         KeyFrame frame = new KeyFrame(Duration.seconds(0.01), event -> {
             Model.classicGame();
             Model.blinkyMove();
-            Model.InkyMove();
+            Model.inkyMove();
+            Model.pinkyMove();
             Model.gameOverCheck();
             heroBody.setTranslateX(Model.pacman.currentX * bodySize);
             heroBody.setTranslateY(Model.pacman.currentY * bodySize);
@@ -47,38 +49,35 @@ public class View {
             blinkyBody.setTranslateY(Model.blinky.currentY * bodySize);
             inkyBody.setTranslateX(Model.inky.currentX * bodySize);
             inkyBody.setTranslateY(Model.inky.currentY * bodySize);
+            pinkyBody.setTranslateX(Model.pinky.currentX * bodySize);
+            pinkyBody.setTranslateY(Model.pinky.currentY * bodySize);
             gameField.getChildren().get(Model.pacman.currentY * 28 + Model.pacman.currentX).setVisible(false);
         });
         timeline.getKeyFrames().add(frame);
         timeline.setCycleCount(Timeline.INDEFINITE);
-        root.getChildren().addAll(gameField, heroBody, inkyBody, blinkyBody);
+        root.getChildren().addAll(gameField, heroBody, inkyBody, pinkyBody, blinkyBody);
         return root;
     }
 
-    public Node createHeroFront() {
+    public Node createCharacterFront(int colorIndex) {
         Circle circle = new Circle();
         circle.setRadius(bodySize / 2);
         circle.setCenterY(bodySize / 2);
         circle.setCenterX(bodySize / 2);
-        circle.setFill(Color.YELLOW);
-        return circle;
-    }
-
-    public Node createBlinkyFront() {
-        Circle circle = new Circle();
-        circle.setRadius(bodySize / 2);
-        circle.setCenterY(bodySize / 2);
-        circle.setCenterX(bodySize / 2);
-        circle.setFill(Color.RED);
-        return circle;
-    }
-
-    public Node createInkyFront() {
-        Circle circle = new Circle();
-        circle.setRadius(bodySize / 2);
-        circle.setCenterY(bodySize / 2);
-        circle.setCenterX(bodySize / 2);
-        circle.setFill(Color.BLUE);
+        switch (colorIndex) {
+            case 0:
+                circle.setFill(Color.YELLOW);
+                break;
+            case 1:
+                circle.setFill(Color.RED);
+                break;
+            case 2:
+                circle.setFill(Color.PINK);
+                break;
+            case 3:
+                circle.setFill(Color.BLUE);
+                break;
+        }
         return circle;
     }
 

@@ -2,6 +2,7 @@ package model;
 
 import ghosts.Blinky;
 import ghosts.Inky;
+import ghosts.Pinky;
 import project.Controller;
 
 import java.util.List;
@@ -21,7 +22,8 @@ public class Model {
     public static GameField field = new GameField();
     public static Blinky blinky = new Blinky();
     public static Inky inky = new Inky();
-    private static int counter = 0;
+    public static Pinky pinky = new Pinky();
+    public static int counter = 0;
     public static boolean gameOver = false;
 
     public static void classicGame() {
@@ -70,12 +72,21 @@ public class Model {
         }
     }
 
-    public static void InkyMove() {
-        //счётчик, чтобы пинки двигался каждые 0,2 секунды
+    public static void inkyMove() {
+        //счётчик, чтобы инки двигался каждые 0,2 секунды
         if (counter % 20 == 0) {
             FieldPoint nextStep = inky.findNextStep(pacman.currentX, pacman.currentY);
             inky.currentX = nextStep.getX();
             inky.currentY = nextStep.getY();
+        }
+    }
+
+    public static void pinkyMove() {
+        //счётчик, чтобы инки двигался каждые 0,2 секунды
+        FieldPoint nextStep = pinky.findNextStep(pacman.currentX, pacman.currentY);
+        if (counter % 20 == 0) {
+            pinky.currentX = nextStep.getX();
+            pinky.currentY = nextStep.getY();
         }
     }
 
@@ -85,6 +96,10 @@ public class Model {
             return;
         }
         if (inky.currentX == pacman.currentX && inky.currentY == pacman.currentY) {
+            Controller.gameOver();
+            return;
+        }
+        if (pinky.currentX == pacman.currentX && pinky.currentY == pacman.currentY) {
             Controller.gameOver();
             return;
         }

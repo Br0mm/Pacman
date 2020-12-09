@@ -78,6 +78,10 @@ public class Controller {
         Model.pacman.currentY = 17;
         Model.blinky.currentX = 14;
         Model.blinky.currentY = 11;
+        Model.inky.currentX = 13;
+        Model.inky.currentY = 11;
+        Model.pinky.currentX = 5;
+        Model.pinky.currentY = 5;
         try {
             Main.primaryStage.setScene(control());
         } catch (IOException e) {
