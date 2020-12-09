@@ -3,8 +3,9 @@ package model;
 public class FieldPoint {
     private final int x;
     private final int y;
-    int weight = Integer.MAX_VALUE;
-    PointType type = PointType.COMMON;
+    private int weight = Integer.MAX_VALUE;
+    private PointType type = PointType.COMMON;
+    private int ways = 0;
     private boolean isObstacle = false;
 
     FieldPoint (int x, int y) {
@@ -24,6 +25,10 @@ public class FieldPoint {
         type = PointType.OBSTACLE;
         isObstacle = true;
     }
+
+    public void setWays(int ways) { this.ways = ways; }
+
+    public int getWays() { return ways; }
 
     public void setIsNone() {
         type = PointType.NONE;

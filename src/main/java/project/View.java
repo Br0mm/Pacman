@@ -33,21 +33,25 @@ public class View {
 
         Node heroBody = createHeroFront();
         Node blinkyBody = createBlinkyFront();
+        Node inkyBody = createInkyFront();
         Group gameField = createGameField();
 
         KeyFrame frame = new KeyFrame(Duration.seconds(0.01), event -> {
             Model.classicGame();
             Model.blinkyMove();
+            Model.InkyMove();
             Model.gameOverCheck();
             heroBody.setTranslateX(Model.pacman.currentX * bodySize);
             heroBody.setTranslateY(Model.pacman.currentY * bodySize);
             blinkyBody.setTranslateX(Model.blinky.currentX * bodySize);
             blinkyBody.setTranslateY(Model.blinky.currentY * bodySize);
+            inkyBody.setTranslateX(Model.inky.currentX * bodySize);
+            inkyBody.setTranslateY(Model.inky.currentY * bodySize);
             gameField.getChildren().get(Model.pacman.currentY * 28 + Model.pacman.currentX).setVisible(false);
         });
         timeline.getKeyFrames().add(frame);
         timeline.setCycleCount(Timeline.INDEFINITE);
-        root.getChildren().addAll(gameField, heroBody, blinkyBody);
+        root.getChildren().addAll(gameField, heroBody, inkyBody, blinkyBody);
         return root;
     }
 
@@ -60,12 +64,21 @@ public class View {
         return circle;
     }
 
-    public Node createBlinkyFront() throws IOException {
+    public Node createBlinkyFront() {
         Circle circle = new Circle();
         circle.setRadius(bodySize / 2);
         circle.setCenterY(bodySize / 2);
         circle.setCenterX(bodySize / 2);
         circle.setFill(Color.RED);
+        return circle;
+    }
+
+    public Node createInkyFront() {
+        Circle circle = new Circle();
+        circle.setRadius(bodySize / 2);
+        circle.setCenterY(bodySize / 2);
+        circle.setCenterX(bodySize / 2);
+        circle.setFill(Color.BLUE);
         return circle;
     }
 

@@ -11,6 +11,7 @@ public class GameField {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        createWays();
     }
 
     public FieldPoint[][] gameField;
@@ -55,6 +56,21 @@ public class GameField {
         for (int i = Integer.parseInt(indexes[0]); i <= Integer.parseInt(indexes[1]); i++) {
             for (int j = Integer.parseInt(indexes[2]); j <= Integer.parseInt(indexes[3]); j++) {
                 gameField[i][j].setIsObstacle();
+            }
+        }
+    }
+
+    private void createWays() {
+        //отступ на 1 от минимума и максимума
+        int counterOfWays = 0;
+        for (int i = 1; i < 30; i++) {
+            for (int j = 1; j < 27; j++) {
+                if (!gameField[i - 1][j].isObstacle()) counterOfWays++;
+                if (!gameField[i + 1][j].isObstacle()) counterOfWays++;
+                if (!gameField[i][j - 1].isObstacle()) counterOfWays++;
+                if (!gameField[i][j + 1].isObstacle()) counterOfWays++;
+                if (!gameField[i][j].isObstacle()) gameField[i][j].setWays(counterOfWays);
+                counterOfWays = 0;
             }
         }
     }

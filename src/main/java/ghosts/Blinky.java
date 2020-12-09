@@ -31,29 +31,28 @@ public class Blinky {
         FieldPoint currentPosition = start;
         int weight = currentPosition.getWeight();
         while (currentPosition.getX() != pacmanX || currentPosition.getY() != pacmanY) {
-
             if (!field.gameField[currentPosition.getY() + 1][currentPosition.getX()].isObstacle()
                     && field.gameField[currentPosition.getY() + 1][currentPosition.getX()].getWeight() == Integer.MAX_VALUE) {
                 field.gameField[currentPosition.getY() + 1][currentPosition.getX()].setWeight(weight + 1);
                 fieldsToVisit.add(field.gameField[currentPosition.getY() + 1][currentPosition.getX()]);
             }
-            if (currentPosition.getY() != 0)
-                if (!field.gameField[currentPosition.getY() - 1][currentPosition.getX()].isObstacle()
-                        && field.gameField[currentPosition.getY() - 1][currentPosition.getX()].getWeight() == Integer.MAX_VALUE) {
-                    field.gameField[currentPosition.getY() - 1][currentPosition.getX()].setWeight(weight + 1);
-                    fieldsToVisit.add(field.gameField[currentPosition.getY() - 1][currentPosition.getX()]);
-                }
+            if (currentPosition.getY() != 0
+                    && !field.gameField[currentPosition.getY() - 1][currentPosition.getX()].isObstacle()
+                    && field.gameField[currentPosition.getY() - 1][currentPosition.getX()].getWeight() == Integer.MAX_VALUE) {
+                field.gameField[currentPosition.getY() - 1][currentPosition.getX()].setWeight(weight + 1);
+                fieldsToVisit.add(field.gameField[currentPosition.getY() - 1][currentPosition.getX()]);
+            }
             if (!field.gameField[currentPosition.getY()][currentPosition.getX() + 1].isObstacle()
                     && field.gameField[currentPosition.getY()][currentPosition.getX() + 1].getWeight() == Integer.MAX_VALUE) {
                 field.gameField[currentPosition.getY()][currentPosition.getX() + 1].setWeight(weight + 1);
                 fieldsToVisit.add(field.gameField[currentPosition.getY()][currentPosition.getX() + 1]);
             }
-            if (currentPosition.getX() != 0)
-                if (!field.gameField[currentPosition.getY()][currentPosition.getX() - 1].isObstacle()
-                        && field.gameField[currentPosition.getY()][currentPosition.getX() - 1].getWeight() == Integer.MAX_VALUE) {
-                    field.gameField[currentPosition.getY()][currentPosition.getX() - 1].setWeight(weight + 1);
-                    fieldsToVisit.add(field.gameField[currentPosition.getY()][currentPosition.getX() - 1]);
-                }
+            if (currentPosition.getX() != 0
+                    && !field.gameField[currentPosition.getY()][currentPosition.getX() - 1].isObstacle()
+                    && field.gameField[currentPosition.getY()][currentPosition.getX() - 1].getWeight() == Integer.MAX_VALUE) {
+                field.gameField[currentPosition.getY()][currentPosition.getX() - 1].setWeight(weight + 1);
+                fieldsToVisit.add(field.gameField[currentPosition.getY()][currentPosition.getX() - 1]);
+            }
             currentPosition = fieldsToVisit.remove();
             weight = currentPosition.getWeight();
         }
@@ -73,22 +72,22 @@ public class Blinky {
                 path.add(currentPosition);
                 weight = currentPosition.getWeight();
             }
-            if (currentPosition.getY() != 0)
-                if (field.gameField[currentPosition.getY() - 1][currentPosition.getX()].getWeight() < weight) {
-                    currentPosition = field.gameField[currentPosition.getY() - 1][currentPosition.getX()];
-                    path.add(currentPosition);
-                    weight = currentPosition.getWeight();
-                }
+            if (currentPosition.getY() != 0
+                    && field.gameField[currentPosition.getY() - 1][currentPosition.getX()].getWeight() < weight) {
+                currentPosition = field.gameField[currentPosition.getY() - 1][currentPosition.getX()];
+                path.add(currentPosition);
+                weight = currentPosition.getWeight();
+            }
             if (field.gameField[currentPosition.getY()][currentPosition.getX() + 1].getWeight() < weight) {
                 currentPosition = field.gameField[currentPosition.getY()][currentPosition.getX() + 1];
                 path.add(currentPosition);
                 weight = currentPosition.getWeight();
             }
-            if (currentPosition.getX() != 0)
-                if (field.gameField[currentPosition.getY()][currentPosition.getX() - 1].getWeight() < weight) {
-                    currentPosition = field.gameField[currentPosition.getY()][currentPosition.getX() - 1];
-                    path.add(currentPosition);
-                }
+            if (currentPosition.getX() != 0
+                    && field.gameField[currentPosition.getY()][currentPosition.getX() - 1].getWeight() < weight) {
+                currentPosition = field.gameField[currentPosition.getY()][currentPosition.getX() - 1];
+                path.add(currentPosition);
+            }
         }
         Collections.reverse(path);
         return path;

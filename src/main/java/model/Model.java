@@ -1,6 +1,7 @@
 package model;
 
 import ghosts.Blinky;
+import ghosts.Inky;
 import project.Controller;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class Model {
     public static Pacman pacman = new Pacman();
     public static GameField field = new GameField();
     public static Blinky blinky = new Blinky();
+    public static Inky inky = new Inky();
     private static int counter = 0;
     public static boolean gameOver = false;
 
@@ -68,8 +70,21 @@ public class Model {
         }
     }
 
+    public static void InkyMove() {
+        //счётчик, чтобы пинки двигался каждые 0,2 секунды
+        if (counter % 20 == 0) {
+            FieldPoint nextStep = inky.findNextStep(pacman.currentX, pacman.currentY);
+            inky.currentX = nextStep.getX();
+            inky.currentY = nextStep.getY();
+        }
+    }
+
     public static void gameOverCheck() {
         if (blinky.currentX == pacman.currentX && blinky.currentY == pacman.currentY) {
+            Controller.gameOver();
+            return;
+        }
+        if (inky.currentX == pacman.currentX && inky.currentY == pacman.currentY) {
             Controller.gameOver();
             return;
         }
